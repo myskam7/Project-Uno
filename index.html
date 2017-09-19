@@ -8,7 +8,7 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
           crossorigin="anonymous">
 </head>
@@ -45,31 +45,36 @@
                 </div>
                 
     <script>
-        // var searchTerm = $('.form-control')
-        
+        // Input name into search bar to search for id
         const cors = "https://cors-bcs.herokuapp.com/";
-
         $(".btn-outline-success").on("click", function(event){
             event.preventDefault();
-            var searchTerm = $("#input").val()
-            console.log(searchTerm)
-            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+            var name = $("#input").val()
+            console.log(name)
+            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
             $.ajax({
             url: queryURL,
-            method: 'GET'
-        }).done(function(response){
-            console.log(response)
-            // return response.id
+            method: 'GET',
+            success: function(data){
+                console.log (data.id)
+                dt = data.id;
+            },
+            // makes a second request with the id of the name 
+                complete: function(data){
+                    // var nameId = $("data.id.val()
+                    var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+                    $.ajax({                       
+                        url: queryURL2,
+                        method: 'GET',
+                        success: function(response){
+                            console.log(response)
+                        }
+                      },               
+                    )}
 
-        //     $(response.id).val()
-        //     var queryURL2 = 'https://cors-bcs.herokuapp.com/https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
-        //     $.ajax({
-        //     url: queryURL2,
-        //     method: 'GET'
-        // }).done(function(result){
-        //     console.log(result)
-        })
-        })
+         });
+        });
+        
         
     </script>
     
