@@ -47,11 +47,12 @@
     <script>
         // Input name into search bar to search for id
         const cors = "https://cors-bcs.herokuapp.com/";
+        var apiID = "RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2";
         $(".btn-outline-success").on("click", function(event){
             event.preventDefault();
             var name = $("#input").val()
             console.log(name)
-            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name + '?api_key='+ apiID;
             $.ajax({
             url: queryURL,
             method: 'GET',
@@ -59,10 +60,10 @@
                 console.log (data.id)
                 dt = data.id;
             },
-            // makes a second request with the id of the name 
+            // makes a second request with the id of the name  
                 complete: function(data){
                     // var nameId = $("data.id.val()
-                    var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+                    var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=' + apiID;
                     $.ajax({                       
                         url: queryURL2,
                         method: 'GET',
