@@ -26,7 +26,7 @@
              </head>
              
              <body>
-                <div class="container">
+                <div class="container" id="gridID">
                    <div class="jumbotron">
                       <h1> </h1>
                       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
@@ -47,26 +47,35 @@
     <script>
         // Input name into search bar to search for id
         const cors = "https://cors-bcs.herokuapp.com/";
-        var apiID = "RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2";
+        var apiID = "RGAPI-818a2ace-9c3a-4b25-acf9-920dbc693326";
 
         $(".btn-outline-success").on("click", function(event){
             event.preventDefault();
-            var name = $(this).val()
-            console.log(name)
-            var queryURL = cors + 'https://na1.api.riotgames.com/lol/static-data/v3/champions?api_key='+ apiID;
+            // var name = $(this).val()
+            // console.log(name)
+            // var data = $.param({ foo: ['id'] }, true);
+            var queryURL = cors + 'https://overwatch-api.net/api/v1/hero/1';
+           var grid = $("<div>")
+           $("#gridID").append(grid)
             $.ajax({
                 url: queryURL,
                 method: 'GET',
-                success: function(data){
-                    var a = [];
-                    console.log (data.a.id)
-                    a.forEach(function(data){
-                        console.log(data)
-                    })
-                    // for (var i = 0; i < data.length; i++) {
-                    //     console.log(data[i])
-                    // }
-                },
+            }).done(function(result){
+                var characters = result;
+                console.log(characters)
+                $
+            })
+
+
+
+
+        }); 
+            // $.ajax({
+            //     url: queryURL,
+            //     method: 'GET',
+            // }).done(function(result){
+            //         console.log(result)
+            // });
             
             // makes a second request with the id of the name  
                 // complete: function(data){
@@ -80,9 +89,21 @@
                 //         }
                 //       },               
                 //     )}
-
-         });
-        });
+     
+      
+                // data: data,
+                // success: function(result){
+                    // var a = data;
+                    // console.log (result)
+                   
+                    // var a = key.data
+                    //  $(a).each(function(e){
+                    //     console.log(a)
+                    // })
+                    // for (var i = 0; i < data.length; i++) {
+                    //     console.log(data[i])
+                    // }
+            
         
         
     </script>
