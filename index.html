@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge Round</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+</head>
+<body>
+
+        <style>
+                .paper{
+                  border: 1px solid red;
+                }
+                
+                 a:hover{
+                    text-decoration: none;
+                 }
+                </style>
+             </head>
+             
+             <body>
+                <div class="container">
+                   <div class="jumbotron">
+                      <h1> </h1>
+                      <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+             
+                      <nav class="navbar navbar-light bg-faded">
+                             <form class="form-inline">
+                               <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
+                               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                             </form>
+                           </nav>
+             
+                   </div>
+                   <div class="paper1">
+             
+                   </div>
+                </div>
+                
+    <script>
+        // var searchTerm = $('.form-control')
+        
+        const cors = "https://cors-bcs.herokuapp.com/";
+
+        $(".btn-outline-success").on("click", function(event){
+            event.preventDefault();
+            var searchTerm = $("#input").val()
+            console.log(searchTerm)
+            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+            $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response){
+            console.log(response)
+            // return response.id
+
+        //     $(response.id).val()
+        //     var queryURL2 = 'https://cors-bcs.herokuapp.com/https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+        //     $.ajax({
+        //     url: queryURL2,
+        //     method: 'GET'
+        // }).done(function(result){
+        //     console.log(result)
+        })
+        })
+        
+    </script>
+    
+</body>
+</html>
