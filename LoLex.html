@@ -55,29 +55,21 @@ request.open('GET', 'https://battlefieldtracker.com/bf1/api/Stats/CareerForOwned
 
 // request.setRequestHeader('New item', '');
 
-request.onreadystatechange = function () {
-  if (this.readyState === 4) {
-    console.log('Status:', this.status);
-    console.log('Headers:', this.getAllResponseHeaders());
-    console.log('Body:', this.responseText);
-  }
-};
 
-request.send();
             // var searchTerm = $('.form-control')
             //===============================================
-            // const cors = "https://cors-bcs.herokuapp.com/";
+            const cors = "https://cors-bcs.herokuapp.com/";
     
-            // $(".btn-outline-success").on("click", function(event){
-            //     event.preventDefault();
-            //     var searchTerm = $("#input").val()
-            //     console.log(searchTerm)
-            //     var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
-            //     $.ajax({
-            //     url: queryURL,
-            //     method: 'GET'
-            // }).done(function(response){
-            //     console.log(response)
+            $(".btn-outline-success").on("click", function(event){
+                event.preventDefault();
+                var searchTerm = $("#input").val()
+                console.log(searchTerm)
+                var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + searchTerm + '?api_key=RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2'
+                $.ajax({
+                url: queryURL,
+                method: 'GET'
+            }).done(function(response){
+                console.log(response)
 
                 //==============================================
                 // return response.id
@@ -89,8 +81,8 @@ request.send();
             //     method: 'GET'
             // }).done(function(result){
             //     console.log(result)
-                // })
-                // })
+                })
+                })
             
         </script>
         
