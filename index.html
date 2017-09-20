@@ -7,6 +7,7 @@
     <title>Challenge Round</title>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -26,8 +27,11 @@
              </head>
              
              <body>
-                <div class="container">
+                <div class="container" >
                    <div class="jumbotron">
+                       
+                           <div class="chart"></div>
+                       
                       <h1> </h1>
                       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
              
@@ -40,44 +44,197 @@
              
                    </div>
                    <div class="paper1">
+                       <div id="grid"></div>
+                       <div id="details"></div>
              
                    </div>
                 </div>
                 
-    <script>
-        // Input name into search bar to search for id
-        const cors = "https://cors-bcs.herokuapp.com/";
-        var apiID = "RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2";
-        $(".btn-outline-success").on("click", function(event){
-            event.preventDefault();
-            var name = $("#input").val()
-            console.log(name)
-            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name + '?api_key='+ apiID;
-            $.ajax({
-            url: queryURL,
-            method: 'GET',
-            success: function(data){
-                console.log (data.id)
-                dt = data.id;
-            },
-            // makes a second request with the id of the name  
-                complete: function(data){
-                    // var nameId = $("data.id.val()
-                    var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=' + apiID;
-                    $.ajax({                       
-                        url: queryURL2,
-                        method: 'GET',
-                        success: function(response){
-                            console.log(response)
-                        }
-                      },               
-                    )}
+                <script>
+	
+ 
+ $(document).ready(function(){
+      // Input name into search bar to search for id
+    const cors = "https://cors-bcs.herokuapp.com/";
+     var queryURL = cors + 'https://overwatch-api.net/api/v1/hero';
 
-         });
-        });
+     $.ajax({
+         url: queryURL,
+         method: 'GET',
+     }).done(function(result){
+         
+        var characters = result.data
+         //console.log(characters);
+         
+         for(var i = 0; i < characters.length; i++){
+             var d = $("<button>") 
+             d.addClass("btn btn-outline-success my-2 my-sm-0")
+             d.data("url", characters[i].url)
+             d.data("data-toggle", "modal")
+             d.data("data-target", "#exampleModal")
+             d.html(characters[i].name + ": " + characters[i].id)
+             $("#grid").append(d);
+
+
+         }
+
+
+         $(document).on("click", "button", function(){
+
+     var click = $(this).data().url;
+
+     $.ajax({
+        url: click,
+        method: 'GET',
+    }).done(function(result){
+    //  var selectedName = $(this).data("name");
+    //  var selectedAffiliation = $(this).data("affiliation")
+    //  var selectedDescription = $(this).data("description")
+    //  var selectedDifficulty = $(this).data("difficulty")
+    //  var selectedHealth = $(this).data("health")
+    //  var selectedArmour = $(this).data("armour")
+    //  var selectedBaseOfOperations = $(this).data("base_of_operations")
+    //  var selectedUrl = $(this).data("url")
+
+
+    
+
+     $("#details").empty();
+ 
+     var details = $("<div>");
+     details.addClass("hero-details")
+
+     var heroName = $("<h3>")
+     heroName.addClass("hero-name")
+     heroName.html(result.name)
+
+     var heroInfo = $("<div>")
+     heroInfo.addClass("hero-info")
+
+         var heroAffiliation = $("<div>")
+         heroAffiliation.addClass("hero-Affiliation")
+         heroAffiliation.html(result.affiliation);
+
+         var heroDifficulty = $("<span>")
+         heroDifficulty.addClass("hero-difficulty")
+         heroDifficulty.html(result.difficulty)
+
+         var heroOperations = $("<div>")
+         heroOperations.addClass("hero-operations")
+         heroOperations.html(result.base_of_operations);
+
+         var heroDescription = $("<p>")
+         heroDescription.addClass("hero-description")
+         heroDescription.html(result.description)
+
+
+     $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroOperations)
+
+     var heroStats = $("<div>")
+     heroStats.addClass("hero-stats")
+     heroStats.html("Hero Stats")
+
+         var heroHealth = $("<span>")
+         heroHealth.addClass("hero-health")
+         heroHealth.html(result.health)
+
+         var heroArmour = $("<span>")
+         heroArmour.addClass("hero-armour")
+         heroArmour.html(result.armour)
+
+         var Abilities = $("<span>")
+         heroArmour.addClass("abilities")
+         heroArmour.html(result.abilities)
+     
+     $(heroStats).append(heroHealth, heroArmour)
+
+     $(details).append(heroName, heroInfo, heroStats, Abilities)
+
+     $("#details").append(details)
+        console.log('result', result);
+      
         
-        
-    </script>
+    })
+    
+ });
+
+
+     });
+
+
+
+//  function displayInfo(){
+     
+     
+     
+     // var modal = $("<div>");
+     // modal.addClass("modal fade");
+     // modal.attr("id", "myModal");
+     // modal.attr("tabindex", "-1");
+     // modal.attr("role", "dialog");
+     // modal.attr("aria-labelledby","exampleModalLabel")
+     // modal.attr("aria-hidden", "true")
+
+     // var modalDialog = $("<div>")
+     // modalDialog.addClass("modal-dialog")
+     // modalDialog.attr("role", "document")
+
+     // var modalContent = $("<div>")
+     // modalContent.addClass("modal-content")
+
+     // $(modal).append(modalDialog, modalContent)
+     
+     // var modalHeader = $("<div>")
+     // modalHeader.addClass("modal-header")
+
+     // var modalTitle = $("<h3>")
+     // modalTitle.addClass("modal-title")
+     // modalTitle.html(selectedName)
+
+     // var closeModal = $("<button>")
+     // closeModal.addClass("close")
+     // closeModal.data("data-dismiss", "modal")
+     // closeModal.attr("aria-label", "Close")
+
+     // var closeSpan = $("<span>");
+     // closeSpan.attr("aria-hidden", "true")
+     // closeSpan.html("&times;")
+
+     // $(closeModal).append(closeSpan)
+
+     // $(modalHeader).append(modalTitle, closeModal)
+
+     // $(modalContent).append(modalHeader);
+
+     // var modalBody = $("<div>");
+     // modalBody.addClass('modal-body');
+     // modalBody.html(selectedAffiliation);
+
+     // var modalFooter = $("<div>");
+     // modalFooter.addClass("modal-footer");
+     // modalFooter.html(selectedName)
+
+     // $(modal).append(modalBody, modalFooter);
+
+
+
+//  }
+
+ 
+});
+
+ // $(".btn btn-outline-success my-2 my-sm-0").on("click", function(event){
+ //     event.preventDefault();
+ //     console.log("You clicked on " + this.data.id);
+ // }); 
+ 
+ 
+
+ // $(".btn btn-outline-success my-2 my-sm-0").on("click", function(event){
+ //     event.preventDefault();
+ //     console.log("You clicked on " + this.data.id);
+ // }); 
+ </script>
     
 </body>
 </html>
