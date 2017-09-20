@@ -7,6 +7,7 @@
     <title>Challenge Round</title>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -28,6 +29,9 @@
              <body>
                 <div class="container" id="gridID">
                    <div class="jumbotron">
+                       
+                           <div class="chart"></div>
+                       
                       <h1> </h1>
                       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
              
@@ -45,17 +49,7 @@
                 </div>
                 
     <script>
-        // Input name into search bar to search for id
-        const cors = "https://cors-bcs.herokuapp.com/";
-        var apiID = "RGAPI-818a2ace-9c3a-4b25-acf9-920dbc693326";
-
-        $(".btn-outline-success").on("click", function(event){
-            event.preventDefault();
-            // var name = $(this).val()
-            // console.log(name)
-            // var data = $.param({ foo: ['id'] }, true);
-
-            var ch = [{
+         var ch = {
                 "Ana": "/1",
                 "Bastion":"/2",
                 "D.Va":"/3",
@@ -81,24 +75,74 @@
                 "Sombra":"/23",
                 "Orisa":"/24",
                
-            }];
-            console.log(ch)
-            var queryURL = cors + 'https://overwatch-api.net/api/v1/hero';
-           var grid = $("<div>")
-           $("#gridID").append(grid)
+            };
+            
+            // console.log(Object.entries(ch));
+
+            // d3.select(".chart")
+            // .selectAll("div")
+            // .data(ch)
+            // .enter()
+            // .append("div")
+            // .style("width", function(d){
+            //     return d
+            // }).text(function(d){ 
+            //     console.log(d)
+            // });
+                
+         const cors = "https://cors-bcs.herokuapp.com/";
+         var apiID = "RGAPI-818a2ace-9c3a-4b25-acf9-920dbc693326";
+         var queryURL = cors + 'https://overwatch-api.net/api/v1/hero' ;
+        //  var grid = $("<div>")
+        //  $("#grid").on("click", function(){
+            
+        //  })
+        //    $("#gridID").append(grid)
             $.ajax({
                 url: queryURL,
                 method: 'GET',
             }).done(function(result){
                 var characters = result;
                 console.log(characters)
-                $
-            })
+                for (var i = 0; i < characters.data.length; i++) {              
+                 var d = $("<button>");
+                 d.addClass("btn btn-outline-success my-2 my-sm-0")
+                 d.html(characters.data[i].name);
+                 $("#gridID").append(d);
+
+                 
+
+             }
+             $("button").on("click", function(event){
+                
+                Object.entries(ch).forEach(([key, value]) => {
+                    
+                    console.log(key, value);
+                    
+                });
+                    });
+                // var a = $("button").val(function( index, value ) {
+                //     console.log ();
+         });
+
+            
+
+            
 
 
 
 
-        }); 
+       
+           
+        
+
+        // $(".btn-outline-success").on("click", function(event){
+        //     event.preventDefault();
+         
+
+           
+        //     console.log(ch)
+        // }); 
             // $.ajax({
             //     url: queryURL,
             //     method: 'GET',
