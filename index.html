@@ -4,80 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Challenge Round</title>
+    <title>Overwatch.gg</title>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
           crossorigin="anonymous">
+
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
         <style>
-                .paper{
-                  border: 1px solid red;
-                }
-                
-                 a:hover{
-                    text-decoration: none;
-                 }
-                </style>
-             </head>
-             
-             <body>
-                <div class="container">
-                   <div class="jumbotron">
-                      <h1> </h1>
-                      <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-             
-                      <nav class="navbar navbar-light bg-faded">
-                             <form class="form-inline">
-                               <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
-                               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                             </form>
-                           </nav>
-             
-                   </div>
-                   <div class="paper1">
-             
-                   </div>
-                </div>
-                
-    <script>
-        // Input name into search bar to search for id
-        const cors = "https://cors-bcs.herokuapp.com/";
-        var apiID = "RGAPI-465c616f-8343-42f0-af5a-06e1cbf11bb2";
-        $(".btn-outline-success").on("click", function(event){
-            event.preventDefault();
-            var name = $("#input").val()
-            console.log(name)
-            var queryURL = cors + 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + name + '?api_key='+ apiID;
-            $.ajax({
-            url: queryURL,
-            method: 'GET',
-            success: function(data){
-                console.log (data.id)
-                dt = data.id;
-            },
-            // makes a second request with the id of the name  
-                complete: function(data){
-                    // var nameId = $("data.id.val()
-                    var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=' + apiID;
-                    $.ajax({                       
-                        url: queryURL2,
-                        method: 'GET',
-                        success: function(response){
-                            console.log(response)
-                        }
-                      },               
-                    )}
+            .navbar-title {
+                margin-right: 1100px;
+                color: black;
+            }
 
-         });
-        });
-        
-        
-    </script>
+            .navbar-title:hover{
+                text-decoration: none;
+                color:orange;
+            }
+
+            /* .tabs{
+                float: right;
+            } */
+
+              
+        </style>
+              
+        <nav class="navbar navbar-dark bg-faded">
+            <span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>
+            <a class="navbar-title" href="#">verWatch.GG</a>
+            <div class="navbar-right ">
+                <div class="About">
+                    <p>About</p>
+                </div>
+                <div class="Contact">
+                    <p>Contact</p>
+                </div>
+            </div>
+        </nav>
+                <div id="grid"></div>
+                <div id="details"></div>
+                
+   
     
 </body>
 </html>
