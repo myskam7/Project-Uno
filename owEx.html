@@ -34,7 +34,15 @@
              </head>
              
              <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <div class="container" >
+=======
                 <div class="container">
+>>>>>>> b90532927b7db001acbfb6cb9bc24a2d7811e5d7
+=======
+                <div class="container">
+>>>>>>> 6ed5798e49fcc0adfd55a52f7a72a716b36f077e
                    <div class="jumbotron">
                        
                            <div class="chart"></div>
@@ -50,16 +58,29 @@
                            </nav>
              
                    </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                   <div class="paper1">
+                       <div id="grid"></div>
+                       <div id="details"></div>
+             
+=======
                    <div id="grid"></div>
                    <div id="details"></div>
+>>>>>>> b90532927b7db001acbfb6cb9bc24a2d7811e5d7
+=======
+                   <div id="grid"></div>
+                   <div id="details"></div>
+>>>>>>> 6ed5798e49fcc0adfd55a52f7a72a716b36f077e
                    </div>
                 </div>
                 
                 <script>
-	 // Input name into search bar to search for id
- const cors = "https://cors-bcs.herokuapp.com/";
+	
  
  $(document).ready(function(){
+      // Input name into search bar to search for id
+    const cors = "https://cors-bcs.herokuapp.com/";
      var queryURL = cors + 'https://overwatch-api.net/api/v1/hero';
 
      $.ajax({
@@ -71,7 +92,14 @@
          //console.log(characters);
          
          for(var i = 0; i < characters.length; i++){
+<<<<<<< HEAD
+             var d = $("<button>") 
+=======
              var d = $("<button>");
+<<<<<<< HEAD
+>>>>>>> b90532927b7db001acbfb6cb9bc24a2d7811e5d7
+=======
+>>>>>>> 6ed5798e49fcc0adfd55a52f7a72a716b36f077e
              d.addClass("btn btn-outline-success my-2 my-sm-0")
              d.data("url", characters[i].url)
              d.data("data-toggle", "modal")
@@ -87,11 +115,91 @@
          }
 
 
-     })
+         $(document).on("click", "button", function(){
 
- })
+     var click = $(this).data().url;
 
- function displayInfo(){
+     $.ajax({
+        url: click,
+        method: 'GET',
+    }).done(function(result){
+    //  var selectedName = $(this).data("name");
+    //  var selectedAffiliation = $(this).data("affiliation")
+    //  var selectedDescription = $(this).data("description")
+    //  var selectedDifficulty = $(this).data("difficulty")
+    //  var selectedHealth = $(this).data("health")
+    //  var selectedArmour = $(this).data("armour")
+    //  var selectedBaseOfOperations = $(this).data("base_of_operations")
+    //  var selectedUrl = $(this).data("url")
+
+
+    
+
+     $("#details").empty();
+ 
+     var details = $("<div>");
+     details.addClass("hero-details")
+
+     var heroName = $("<h3>")
+     heroName.addClass("hero-name")
+     heroName.html(result.name)
+
+     var heroInfo = $("<div>")
+     heroInfo.addClass("hero-info")
+
+         var heroAffiliation = $("<div>")
+         heroAffiliation.addClass("hero-Affiliation")
+         heroAffiliation.html(result.affiliation);
+
+         var heroDifficulty = $("<span>")
+         heroDifficulty.addClass("hero-difficulty")
+         heroDifficulty.html(result.difficulty)
+
+         var heroOperations = $("<div>")
+         heroOperations.addClass("hero-operations")
+         heroOperations.html(result.base_of_operations);
+
+         var heroDescription = $("<p>")
+         heroDescription.addClass("hero-description")
+         heroDescription.html(result.description)
+
+
+     $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroOperations)
+
+     var heroStats = $("<div>")
+     heroStats.addClass("hero-stats")
+     heroStats.html("Hero Stats")
+
+         var heroHealth = $("<span>")
+         heroHealth.addClass("hero-health")
+         heroHealth.html(result.health)
+
+         var heroArmour = $("<span>")
+         heroArmour.addClass("hero-armour")
+         heroArmour.html(result.armour)
+
+         var Abilities = $("<span>")
+         heroArmour.addClass("abilities")
+         heroArmour.html(result.abilities)
+     
+     $(heroStats).append(heroHealth, heroArmour)
+
+     $(details).append(heroName, heroInfo, heroStats, Abilities)
+
+     $("#details").append(details)
+        console.log('result', result);
+      
+        
+    })
+    
+ });
+
+
+     });
+
+
+
+//  function displayInfo(){
      
      
      
@@ -146,6 +254,24 @@
 
 
 
+<<<<<<< HEAD
+//  }
+
+ 
+});
+
+ // $(".btn btn-outline-success my-2 my-sm-0").on("click", function(event){
+ //     event.preventDefault();
+ //     console.log("You clicked on " + this.data.id);
+ // }); 
+ 
+ 
+
+ // $(".btn btn-outline-success my-2 my-sm-0").on("click", function(event){
+ //     event.preventDefault();
+ //     console.log("You clicked on " + this.data.id);
+ // }); 
+=======
  }
 
  $(document).on("click", "button", function(){
@@ -351,6 +477,10 @@
     
  });
  
+<<<<<<< HEAD
+>>>>>>> b90532927b7db001acbfb6cb9bc24a2d7811e5d7
+=======
+>>>>>>> 6ed5798e49fcc0adfd55a52f7a72a716b36f077e
  </script>
     
 =======

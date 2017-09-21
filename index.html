@@ -14,6 +14,9 @@
     <script type="text/javascript" src="script.js"></script>
     <script src="https://use.fontawesome.com/7666e0844e.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
@@ -25,6 +28,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -32,28 +36,40 @@
 
         <style>
 
+
+
             /* changes the document text with this font-family */
             *{
                 font-family: 'Raleway', sans-serif;
             }
 
             /* targets the overwatch logo and "verwatch.gg text */
+
             .navbar-title {
                 color: white;
                 font-size: 25px;
             }
 
+
+
             /* whenever the "overwatch.gg text is hover, this is tiggered */
+
             .navbar-title:hover{
                 text-decoration: none;
                 color:orange;
             }
 
+
+
             /* changes the navbar itself */
+
             .navbar{
                 padding: 12px;
                 border-radius: 1px;
             }
+
+            .picture{
+
             
             /* targets the tabs div containing the "Hero Selection" and "About" text */
             .tabs{
@@ -83,19 +99,34 @@
             /* the jumbrotron picture */
             .picture{
                 margin-top: 10px;
+
                 background-image: url("assets/img/overwatch-background-first-image.jpg");
                 background-size: cover;
                 border-radius: 0;
                 height: 525px;
             }
 
+            .char-select{
+              
+            }
+
+
             /* targets the div containing the "Search your favorite.." text */
+
             .headline{
                 background-color: white;
                 padding: 30px;
                 border-radius: 4px;
                 background-color: #FAFAFA;
             }
+
+            .headline-box{
+                text-align: center;
+            }
+            .about-section{
+                padding: 15px;
+            }
+
 
             /* targets the div that contains the "Hero Selection" text and button grid */
             .char-select{
@@ -128,11 +159,18 @@
                 padding: 20px;
             }
 
+
             /* targets the icons used in the about section */
+
             .icon{
                 text-align: center;
                 padding-bottom: 20px; 
             }
+
+            .question{
+                text-align: center;
+            }
+
 
             /* targets the div that contains the question text */
             .question{
@@ -140,19 +178,28 @@
             }
 
             /* targets the div that contains the descriptions used in the about section */
+
             .about-description{
                 text-align: center;
                 padding-top: 15px;
                 padding-bottom: 15px; 
             }
 
+
             /* targets the footer div */
+
             .footer{
                 border: 2px solid black;
                 border-bottom: none;
                 padding: 10px;
                 text-align: center;
             }
+
+           .hero-details{
+                border: 1px solid #292B2C;
+
+           }
+
 
 
             .donut {
@@ -171,6 +218,7 @@
            
 
 
+
         </style>
     
    <div class="container">
@@ -181,6 +229,17 @@
                 <li><a class="tabs" href="#about" id="tab-about">About</a></li>
             </ul>
         </nav>
+
+
+        <div class="jumbotron picture">
+            <div class="container">
+                <div class="headline">
+                    <h3 class="headline-box">Search your favorite Overwatch hero</h3>
+                    <h4 class="headline-box">Learn more about their lore, stats and get access</h4>
+                    <h4 class="headline-box">to gameplay footage and more!</h4>
+                </div>
+            </div>
+        </div>  
 
         <div class="jumbotron picture" ></div>  
 
@@ -193,6 +252,7 @@
 
 
 
+
         <div class="char-select">
 
         
@@ -200,6 +260,13 @@
             <h3 class="hero-selection-title">Hero Selection</h3>
 
             <div id="grid"></div>
+
+            <div id="detailGrid"></div>
+            <div id="details">
+                
+            </div>
+            <div id="videos"></div>
+
             <div id="details"> 
 
                     
@@ -218,6 +285,8 @@
                     <canvas id="myChart"></canvas>
                     <div class="inner-content"></div>
              -->
+
+            
                     </div>
             </div>
             <div id="videos"></div>

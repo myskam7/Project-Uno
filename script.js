@@ -49,19 +49,11 @@ $(document).on("click", "button", function(){
       ctx.fillText("Hello World!",10,50);
       
       $(".inner-content").text('HEALTH')
-      
-      var d = $("<div>")
-      var e = $("<canvas>")
-      var f = $("<div>")
-          d.attr('style','top:60px; left:10px; width:500px; height:500px;')
-          e.attr("id", "myChart")
-          f.addClass("inner-content")
-          $(".char-select").append(e, f, d)      
-          console.log(e)
-          console.log(f)
-          console.log(d)
+     
      
       var myDoughnutChart = new Chart(ctx, {
+
+        
           type: 'doughnut',
           
           data: {
