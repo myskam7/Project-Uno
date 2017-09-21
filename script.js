@@ -94,6 +94,7 @@ function displayInfo(){
 $(document).on("click", "button", function(){
 
     var click = $(this).data().url;
+    $("#videos").empty();
 
     $.ajax({
        url: click,
