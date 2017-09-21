@@ -29,7 +29,7 @@ Features we would love to add in the project is extracting more data from outsid
 
 We would love to add user input validation for a youtube search bar and a search bar for the hero selection if and when the list of heros gets bigger.
 
-We would want to actually display our data of the selected hero's information and videos via a bootstrap modal.
+We would want to actually display our data of the selected hero's information and videos via a bootstrap modal.We would also like to add the icons assoicated with the character's abilities, and include an thumbnail image of the hero on the button grid that has the hero names.
 
 
 
