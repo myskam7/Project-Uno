@@ -41,23 +41,4 @@
 a:hover{
     background: #0FCB0F;
 
-=======
-.axis {
-    font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-.paper {
-    border: 1px solid red;
-}
-
-a:hover {
-    text-decoration: none;
-
 }
