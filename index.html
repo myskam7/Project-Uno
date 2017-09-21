@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Challenge Round</title>
-
+    <title>Overwatch.gg</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://use.fontawesome.com/7666e0844e.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+   
     <link rel="stylesheet" href="assets/css/style.css">
     
 
@@ -21,35 +26,197 @@
 
 <body>
 
-    <div class="container">
+        <style>
+            *{
+               box-sizing: border-box;
+
+            }
+
+            .navbar-title {
+                color: white;
+            }
+
+            .navbar-title:hover{
+                text-decoration: none;
+                color:orange;
+            }
+
+            .navbar{
+                padding: 12px;
+                border-radius: 1px;
+            }
+
+            .jumbotron{
+                /* background-image: url("assets/img/overwatch-background-first-image.jpg");
+                background-size: cover;
+                border-radius: 0;
+                height: 525px; */
+            }
+
+            #picture{
+                background-image: url("assets/img/overwatch-background-first-image.jpg");
+                background-size: cover;
+                border-radius: 0;
+                height: 525px;
+            }
+
+            .headline{
+                background-color: white;
+                padding: 30px;
+                border-radius: 4px;
+                opacity: 0.7;
+                background-color: lightgrey;
+            }
+
+            .char-select{
+              padding-top: 20px;
+            }
+
+            .headline-box{
+                text-align: center;
+            }
+
+            .about-section{
+                padding: 15px;
+            }
+
+            #about{
+                text-align: center;
+                padding: 20px;
+            }
+
+            .icon{
+                text-align: center;
+                padding-bottom: 20px; 
+            }
+
+            .question{
+                text-align: center;
+            }
+
+            .about-description{
+                text-align: center;
+                padding-top: 15px;
+                padding-bottom: 15px; 
+            }
+
+            .footer{
+                border: 2px solid black;
+                border-bottom: none;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .donut {
+            max-height: 300px;
+            max-width: 800px;
+            position: relative;
+                }
+            
+            
+               #myChart {
+            
+            /* left: 100%; */
+            
+            float: right;
+             }
+           
+
+        </style>
+    
+   <div class="container">
+        <nav class="navbar navbar-inverse bg-inverse">
+            <ul class="nav">
+                <li><a class="navbar-title" href="#"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+            </ul>
+        </nav>
+
         <div class="jumbotron">
+            <div id="picture">
+            </div>
+        </div>  
 
-            <div class="chart"></div>
-
-            <h1> </h1>
-            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-
-            <nav class="navbar navbar-light bg-faded">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </nav>
-        </div>
-        <div class="paper1">
-            <div id="grid"></div>
-            <div id="details"></div>
-
-            <div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">
-                <canvas id="myChart"></canvas>
-                <div class="inner-content"></div>
-
-
+        <div class="headline">
+                <h3 class="headline-box">Search your favorite Overwatch hero</h3>
+                <h4 class="headline-box">Learn more about their lore, stats and get access</h4>
+                <h4 class="headline-box">to gameplay footage and more!</h4>
             </div>
 
+
+
+        <div class="char-select">
+            <div id="grid"></div>
+            <div id="details"> 
+
+                    
+            </div>
+
+            <div  style=" top:60px; left:10px; width:500px; height:500px;">
+                    <canvas id="myChart"></canvas>
+                    <div class="inner-content"></div>
+            
+                    </div>
+            </div>
+            <div id="videos"></div>
+        </div>
+       
+ 
+
+        <div class="about-section">
+          <div class="container">
+              
+              <h2 id="about">About Our Project</h2>
+              <div class="row">
+                    <div class="col icon">
+                        <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col icon">
+                        <i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col icon">
+                        <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col">
+                        <h3 class="question">Wanna know more about your hero?</h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="question">Wanna see how the pros play your hero?</h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="question">Do you consider yourself a Genji Main?</h3>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col">
+                        <p class="about-description">Get access to the hero's Bio, Stats, and Abilities!</p>
+                    </div>
+                    <div class="col">
+                        <p class="about-description">Get access to gameplay footage of your selected hero!</p>
+                    </div>
+                    <div class="col">
+                        <p class="about-description">Get access to the amazon store and get yourself some Genji Merch!</p>
+                    </div>
+              </div>
+          </div>
         </div>
 
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+        <div class="footer">
+           <span class="creator-list">Built by
+                <a class="creators" href="https://github.com/myskam7" target="_blank">Myskam</a>,
+                <a class="creators" href="https://github.com/Bryanp2033" target="_blank">Bryan</a>,and
+                <a class="creators" href="https://github.com/DC-Developer" target="_blank">Dion</a>
+           </span>
+           <br>
+           <span class="github-source">
+                <a href="https://github.com/myskam7/Project-Uno" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+           </span>
+           <br>
+          
+        </div>
+   </div>
+
 
 </body>
 
