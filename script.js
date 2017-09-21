@@ -103,6 +103,39 @@ $(document).on("click", "button", function(){
       console.log(result)
       console.log(result.age)
      
+      var ctx = document.getElementById('myChart').getContext('2d');
+      ctx.font="20px Georgia";
+      ctx.fillText("Hello World!",10,50);
+      
+      $(".inner-content").text('HEALTH')
+     
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          
+          data: {
+              labels: [result.health],
+              datasets: [{
+                  label: "My First dataset",
+                  backgroundColor: ['rgb(218, 252, 100)','rgb(252, 250, 250)'],
+                  borderColor: 'white',
+                  data: [result.health, 600 - result.health],
+              
+                   
+              }]
+          },
+
+          // Configuration options go here
+          options: {
+              maintainAspectRatio: true,
+              responsive: true,
+              rotation: Math.PI *-0.01,
+              cutoutPercentage: 80,
+              animation:{
+                  animateScale: true,
+              },
+          }
+         
+      });
 
 
     $("#details").empty();

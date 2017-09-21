@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Overwatch.gg</title>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+   
     <link rel="stylesheet" href="assets/css/style.css">
     
 
@@ -106,6 +106,20 @@
                 padding: 10px;
                 text-align: center;
             }
+
+            .donut {
+            max-height: 300px;
+            max-width: 800px;
+            position: relative;
+                }
+            
+            
+               #myChart {
+            
+            /* left: 100%; */
+            
+            float: right;
+             }
            
 
         </style>
@@ -128,17 +142,29 @@
                 <h4 class="headline-box">to gameplay footage and more!</h4>
             </div>
 
-        
+
 
         <div class="char-select">
             <div id="grid"></div>
-            <div id="details"></div>
+            <div id="details"> 
+
+                    
+            </div>
+
+            <div  style=" top:60px; left:10px; width:500px; height:500px;">
+                    <canvas id="myChart"></canvas>
+                    <div class="inner-content"></div>
+            
+                    </div>
+            </div>
             <div id="videos"></div>
         </div>
+       
  
 
         <div class="about-section">
           <div class="container">
+              
               <h2 id="about">About Our Project</h2>
               <div class="row">
                     <div class="col icon">
@@ -190,35 +216,7 @@
           
         </div>
    </div>
-    <div class="container">
-        <div class="jumbotron">
 
-            <div class="chart"></div>
-
-            <h1> </h1>
-            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-
-            <nav class="navbar navbar-light bg-faded">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </nav>
-        </div>
-        <div class="paper1">
-            <div id="grid"></div>
-            <div id="details"></div>
-
-            <div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">
-                <canvas id="myChart"></canvas>
-                <div class="inner-content"></div>
-
-
-            </div>
-
-        </div>
-
-<script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>
 
