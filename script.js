@@ -33,8 +33,13 @@ $(document).on("click", "button", function(){
     // targets the url of the selected hero's url found in the hero's json object
     var click = $(this).data().url;
 
+    $("#videos").empty();
+    
+
+
     //this refreshes the videos div containing the youtube videos
     $("#videos").empty();
+
 
     $.ajax({
        url: click,
@@ -83,37 +88,86 @@ $(document).on("click", "button", function(){
     //this refreshes the details div containing the hero's details
     $("#details").empty();
 
+    $("#detailGrid").empty();
+    var details = $("<div>");
+    details.addClass("hero-details")
+    
+    console.log(details)
+
+    var heroName = $("<div>")
+
+
 
     var details = $("<div>");
     details.addClass("hero-details")
 
     // this starts the divs being used to display the hero's details
     var heroName = $("<h3>")
+
     heroName.addClass("hero-name")
-    heroName.html(result.name)
+    var name = $("<h3> Name: "+result.name+"</h3>");
+    heroName.append(name)
+    heroName.css({
+        "border-bottom": "1px solid #292B2C"
+    })
+
+    $("#detailGrid").append(heroName)
 
     var heroInfo = $("<div>")
     heroInfo.addClass("hero-info")
-
+        var affiliationDiv = $("<div>")
+        var affiliationP= $("<div>" +result.affiliation+"</div>")
         var heroAffiliation = $("<div>")
-        heroAffiliation.addClass("hero-Affiliation")
+        heroAffiliation.addClass("hero-Affiliation divGen")
         heroAffiliation.html("Affiliation: "+result.affiliation);
+        console.log("Affiliation: "+result.affiliation)
+        affiliationDiv.append(heroAffiliation)
+        affiliationDiv.append(affiliationP)
+        
+        //result.affiliation
 
-        var heroDifficulty = $("<span>")
-        heroDifficulty.addClass("hero-difficulty")
+        var heroDifficulty = $("<div>")
+        heroDifficulty.addClass("hero-difficulty divGen")
         heroDifficulty.html("Difficulty: "+result.difficulty)
+    
+       
 
+        //result.difficulty
         var heroOperations = $("<div>")
-        heroOperations.addClass("hero-operations")
+        heroOperations.addClass("hero-operations divGen")
         heroOperations.html("Location: "+result.base_of_operations);
 
         var heroDescription = $("<p>")
-        heroDescription.addClass("hero-description")
-        heroDescription.html("Description: "+result.description)
+        heroDescription.addClass("hero-description divGen")
+        heroDescription.html("Description: ")
+
+        var heroParagraph = $("<div>"+result.description+"</div>")
+        heroParagraph.css({
+            "text-align": "center",
+            "padding-top": "10px",
+            "padding-bottom": "10px "
+        })
+    
 
 
+    $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroParagraph, heroOperations, heroRole)
 
-    $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroOperations)
+
+    var heroStats = $("<div>")
+    heroStats.addClass("hero-stats divGen")
+    heroStats.html("Hero Stats")
+
+
+        $(heroInfo).append(heroStats)
+
+
+        
+
+        var abilities = $("<div>");
+        var abilitiesText = $("<p> Abilities </p>");
+        abilities.append(abilitiesText);
+        abilities.addClass("divGen")
+        $(heroInfo).append(abilities)
 
         var heroStats = $("<div>")
         heroStats.addClass("hero-stats")
@@ -142,51 +196,79 @@ $(document).on("click", "button", function(){
             $(heroStats).append("<br>")
             $(heroStats).append(abilities)
 
+
         // a for loop that displays every individual abilities of the selected Hero
         for(i = 0; i < result.abilities.length; i ++){
             var heroAbilities = $("<div>")
             heroAbilities.addClass("hero-abilities")
-            heroAbilities.css({"margin-bottom": 5+"px"});
+            heroAbilities.css({
+                "margin-bottom": 5+"px", 
+                "border-bottom": "1px solid black",
+                "padding-top": "10px",
+                "padding-bottom": "10px",
+                "text-align": "center"
+            });
+            
+
             heroAbilities.html( result.abilities[i].name + ": " + result.abilities[i].description)
-            $(abilities).append(heroAbilities)
+            $(heroInfo).append(heroAbilities)
         }
        
             var heroRole = $("<div>")
-            heroRole.addClass("hero-role")
-            heroRole.html("<br>"+"Hero Role: " + "<br>" + result.role.name)
+            heroRole.addClass("hero-role divGen")
+            heroRole.html("Hero Role: " + result.role.name)
             $(heroOperations).append(heroRole)
             $(heroOperations).append("<br>")
-
+            
+            $(heroInfo).append(heroRole)
             
             // this creates an "<a>" tag that contains a link the selected Hero's lore
             var heroLore = $("<a>")
             heroLore.addClass("hero-role")
+            heroLore.addClass("btn btn-outline-success my-2 my-sm-0")
             heroLore.html("Learn More about their Lore")
             heroLore.attr("href", "http://overwatch.wikia.com/wiki/" + result.name)
-            heroLore.css({"background": "black", "border-right": "3px solid white" });
+            heroLore.css({"background": "white ", 
+            "border-right": "3px solid white",
+            "margin-right": "15px",
+            
+            });
             heroLore.attr("target", "_blank")
-            $(heroStats).append(heroLore)
+            $(links).append("<br>")
+            
+        
+            
 
             // this creates an "<a>" tag that contains a link the selected Hero's stats
            var heroRate = $("<a>")
            heroRate.addClass("hero-rate")
+           heroRate.addClass("btn btn-outline-success my-2 my-sm-0")
            heroRate.html("Learn More About Their Win Rates")
            heroRate.attr("href", "https://www.overbuff.com/heroes/" + result.name)
-           heroRate.css({"background": "black", "border-right": "3px solid white" });
+           heroRate.css({"background": "white", 
+           "border-right": "3px solid white",
+           "margin-right": "15px"
+            });
            heroRate.attr("target", "_blank")
-           $(heroStats).append(heroRate)
+           
 
 
           // this creates an "<a>" tag that contains a link redirecting to amazon with the search words of the selected Hero"
            var heroMerch = $("<a>")
            heroMerch.addClass("hero-merch")
+           heroMerch.addClass("btn btn-outline-success my-2 my-sm-0")
            heroMerch.html("Buy " + result.name + " " + "Merch")
            heroMerch.attr("href", "https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+" + result.name)
            heroMerch.attr("target", "_blank")
+
+           heroMerch.css({"background": "white" });
+           
+
            heroMerch.css({"background": "black" });
            $(heroStats).append(heroMerch)
 
         // conditional statements for heros that have special characters in their name
+
            lowerCaseHero = result.name.toLowerCase()
            soldier = "soldier-76"
            lucio = "lucio"
@@ -208,9 +290,15 @@ $(document).on("click", "button", function(){
            if(result.name == "D.Va"){
                heroImg.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + dva + "/icon-portrait.png")
            }
-          
-           $("#details").prepend(heroImg);
-           
+         
+           $("#detailGrid").append(heroImg);
+           var links = $("<div>")
+           links.addClass("links divGen")
+           links.html("Links: ")
+           links.append("<br>")
+           links.append(heroLore)
+           links.append(heroRate)
+           links.append(heroMerch)
            
         // the youtube api key along with the youtube url used for the ajax call
            var youtubeApiKey = "AIzaSyAgk2t-v33L1UZlEksXMD96frXKLKhNIUQ"
@@ -221,12 +309,15 @@ $(document).on("click", "button", function(){
                method: 'GET',
            }).done(function(response){
 
+
                 // the css for the videos div
+
                 $("#videos").css({
                     "display": "grid",
                     "grid-template-columns": "1fr 1fr",
                     "grid-template-rows": "auto",
-                    "grid-gap": "5px"
+                    "grid-gap": "5px",
+                    
 
                 })
 
@@ -245,8 +336,13 @@ $(document).on("click", "button", function(){
            })
     
     
+
+
+    $(details).append(heroName, heroInfo, heroStats, links)
+
     
     $(details).append(heroName, heroInfo, heroStats)
+
 
     $("#details").append(details)
        
