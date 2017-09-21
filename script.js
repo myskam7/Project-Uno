@@ -94,7 +94,8 @@ function displayInfo(){
 $(document).on("click", "button", function(){
 
     var click = $(this).data().url;
-
+    $("#videos").empty();
+    
     $.ajax({
        url: click,
        method: 'GET',
@@ -105,79 +106,101 @@ $(document).on("click", "button", function(){
 
 
     $("#details").empty();
-
+    $("#detailGrid").empty();
     var details = $("<div>");
     details.addClass("hero-details")
+    
     console.log(details)
 
-    var heroName = $("<h3>")
+    var heroName = $("<div>")
     heroName.addClass("hero-name")
-    heroName.html(result.name)
+    var name = $("<h3> Name: "+result.name+"</h3>");
+    heroName.append(name)
+    heroName.css({
+        "border-bottom": "1px solid #292B2C"
+    })
+
+    $("#detailGrid").append(heroName)
 
     var heroInfo = $("<div>")
     heroInfo.addClass("hero-info")
-
+        var affiliationDiv = $("<div>")
+        var affiliationP= $("<div>" +result.affiliation+"</div>")
         var heroAffiliation = $("<div>")
-        heroAffiliation.addClass("hero-Affiliation")
+        heroAffiliation.addClass("hero-Affiliation divGen")
         heroAffiliation.html("Affiliation: "+result.affiliation);
+        console.log("Affiliation: "+result.affiliation)
+        affiliationDiv.append(heroAffiliation)
+        affiliationDiv.append(affiliationP)
+        
+        //result.affiliation
 
-        var heroDifficulty = $("<span>")
-        heroDifficulty.addClass("hero-difficulty")
+        var heroDifficulty = $("<div>")
+        heroDifficulty.addClass("hero-difficulty divGen")
         heroDifficulty.html("Difficulty: "+result.difficulty)
+    
+       
 
+        //result.difficulty
         var heroOperations = $("<div>")
-        heroOperations.addClass("hero-operations")
+        heroOperations.addClass("hero-operations divGen")
         heroOperations.html("Location: "+result.base_of_operations);
 
         var heroDescription = $("<p>")
-        heroDescription.addClass("hero-description")
-        heroDescription.html("Description: "+result.description)
+        heroDescription.addClass("hero-description divGen")
+        heroDescription.html("Description: ")
+
+        var heroParagraph = $("<div>"+result.description+"</div>")
+        heroParagraph.css({
+            "text-align": "center",
+            "padding-top": "10px",
+            "padding-bottom": "10px "
+        })
+    
 
 
-
-    $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroOperations)
+    $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroParagraph, heroOperations, heroRole)
 
     var heroStats = $("<div>")
-    heroStats.addClass("hero-stats")
+    heroStats.addClass("hero-stats divGen")
     heroStats.html("Hero Stats")
-    $(heroStats).append("<br>")
-        var heroHealth = $("<span>")
-        heroHealth.addClass("hero-health")
-        heroHealth.append(result.health)
-        $(heroStats).append("<br>")
-        $(heroStats).append("Health: ")
-        $(heroStats).append(heroHealth)
-        $(heroStats).append("<br>")
 
-        var heroArmour = $("<span>")
-        heroArmour.addClass("hero-armour")
-        heroArmour.append("Armor: ")
-        heroArmour.append(result.armour)
-        $(heroStats).append(heroArmour)
-        $(heroStats).append("<br>")
+
+        $(heroInfo).append(heroStats)
+
+
         
         
 
         var abilities = $("<div>");
         var abilitiesText = $("<p> Abilities </p>");
         abilities.append(abilitiesText);
-        $(heroStats).append("<br>")
-        $(heroStats).append(abilities)
+        abilities.addClass("divGen")
+        $(heroInfo).append(abilities)
 
         for(i = 0; i < result.abilities.length; i ++){
             var heroAbilities = $("<div>")
             heroAbilities.addClass("hero-abilities")
-            heroAbilities.css({"margin-bottom": 5+"px"});
+            heroAbilities.css({
+                "margin-bottom": 5+"px", 
+                "border-bottom": "1px solid black",
+                "padding-top": "10px",
+                "padding-bottom": "10px",
+                "text-align": "center"
+            });
+            
+
             heroAbilities.html( result.abilities[i].name + ": " + result.abilities[i].description)
-            $(abilities).append(heroAbilities)
+            $(heroInfo).append(heroAbilities)
         }
        
             var heroRole = $("<div>")
-            heroRole.addClass("hero-role")
-            heroRole.html("<br>"+"Hero Role: " + "<br>" + result.role.name)
+            heroRole.addClass("hero-role divGen")
+            heroRole.html("Hero Role: " + result.role.name)
             $(heroOperations).append(heroRole)
             $(heroOperations).append("<br>")
 
+            $(heroInfo).append(heroRole)
             
 
             var heroLore = $("<a>")
@@ -228,8 +251,8 @@ $(document).on("click", "button", function(){
            if(result.name == "D.Va"){
                heroImg.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + dva + "/icon-portrait.png")
            }
-          
-           $("#details").prepend(heroImg);
+         
+           $("#detailGrid").append(heroImg);
            
            
            var youtubeApiKey = "AIzaSyAgk2t-v33L1UZlEksXMD96frXKLKhNIUQ"
@@ -240,11 +263,13 @@ $(document).on("click", "button", function(){
            }).done(function(response){
                console.log(response)
 
+                
                 $("#videos").css({
                     "display": "grid",
                     "grid-template-columns": "1fr 1fr",
                     "grid-template-rows": "auto",
-                    "grid-gap": "5px"
+                    "grid-gap": "5px",
+                    
 
                 })
 

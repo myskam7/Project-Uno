@@ -1,4 +1,7 @@
+*{
+    padding: 0;
 
+}
 #grid{
     margin-bottom: 20px;
 
@@ -6,4 +9,31 @@
 .hero-role{
     margin-bottom: 5px;
 
+}
+#videos{
+    margin-right: 0px;
+
+}
+.hero-name{
+    
+    background: #5E6365;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+.divGen{
+    background: #5E6365;
+    color: white;
+    margin-bottom: 5px;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+#hero-details{
+    border: 1px #292B2C;
+
+}
+#detailGrid{
+    text-align: center;
 }

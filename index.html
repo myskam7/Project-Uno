@@ -1,4 +1,4 @@
-d<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,11 @@ d<!DOCTYPE html>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
+    <script src="https://use.fontawesome.com/7666e0844e.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 
@@ -20,49 +24,143 @@ d<!DOCTYPE html>
                 text-decoration: none;
                 color:orange;
             }
-            a{
-                color: white;                
-            }
-            a:hover{
-                text-decoration: none;
-                color:orange;
-            }
-            #about{
-                margin-left: 880px;
-                margin-top: 5px;
-            }
             .navbar{
                 padding: 12px;
                 border-radius: 1px;
             }
-            .jumbotron{
-                background-image:url("assets/img/overwatch-background-first-image.jpg");
+            .picture{
+                background-image: url("assets/img/overwatch-background-first-image.jpg");
                 background-size: cover;
-                height: 500px;
+                border-radius: 0;
+                height: 525px;
             }
+            .char-select{
               
+            }
+            .headline{
+                background-color: white;
+                padding: 15px;
+                width: 400px;
+                float: right;
+                margin-top:230px;
+                border-radius: 4px;
+                opacity: 0.7;
+            }
+            .headline-box{
+                text-align: center;
+            }
+            .about-section{
+                padding: 15px;
+            }
+            #about{
+                text-align: center;
+                padding: 20px;
+            }
+            .icon{
+                text-align: center;
+                padding-bottom: 20px; 
+            }
+            .question{
+                text-align: center;
+            }
+            .about-description{
+                text-align: center;
+                padding-top: 15px;
+                padding-bottom: 15px; 
+            }
+            .footer{
+                border: 2px solid black;
+                border-bottom: none;
+                padding: 10px;
+               
+                text-align: center;
+            }
+           .hero-details{
+                border: 1px solid #292B2C;
+
+           }
         </style>
     
    <div class="container">
         <nav class="navbar navbar-inverse bg-inverse">
-            
-            
             <ul class="nav">
                 <li><a class="navbar-title" href="#"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
-                <li role="presentation" id="about"><a href="#">About</a></li>
             </ul>
         </nav>
 
-        <div class="jumbotron">
-            
+        <div class="jumbotron picture">
+            <div class="container">
+                <div class="headline">
+                    <h3 class="headline-box">Search your favorite Overwatch hero</h3>
+                    <h4 class="headline-box">Learn more about their lore, stats and get access</h4>
+                    <h4 class="headline-box">to gameplay footage and more!</h4>
+                </div>
+            </div>
         </div>  
 
         <div class="char-select">
             <div id="grid"></div>
-            <div id="details"></div>
+            <div id="detailGrid"></div>
+            <div id="details">
+                
+            </div>
             <div id="videos"></div>
+            
         </div>
-             
+ 
+
+        <div class="about-section">
+          <div class="container">
+              <h2 id="about">About Our Project</h2>
+              <div class="row">
+                    <div class="col icon">
+                        <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col icon">
+                        <i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col icon">
+                        <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col">
+                        <h3 class="question">Wanna know more about your hero?</h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="question">Wanna see how the pro play your hero?</h3>
+                    </div>
+                    <div class="col">
+                        <h3 class="question">Do you consider yourself a Genji Main?</h3>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col">
+                        <p class="about-description">Get access to the hero's Bio, Stats, and Abilities!</p>
+                    </div>
+                    <div class="col">
+                        <p class="about-description">Get access to gameplay footage of your selected hero!</p>
+                    </div>
+                    <div class="col">
+                        <p class="about-description">Get access to the amazon store and get yourself some Genji Merch!</p>
+                    </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="footer">
+           <span class="creator-list">Built by
+                <a class="creators" href="https://github.com/myskam7" target="_blank">Myskam</a>,
+                <a class="creators" href="https://github.com/Bryanp2033" target="_blank">Bryan</a>,and
+                <a class="creators" href="https://github.com/DC-Developer" target="_blank">Dion</a>
+           </span>
+           <br>
+           <span class="github-source">
+                <a href="https://github.com/myskam7/Project-Uno" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+           </span>
+           <br>
+          
+        </div>
    </div>
 </body>
 </html>
