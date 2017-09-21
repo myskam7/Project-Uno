@@ -7,19 +7,14 @@
     <title>Overwatch.gg</title>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-          crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
         <style>
             .navbar-title {
-                margin-right: 1100px;
-                color: black;
+                color: white;
             }
 
             .navbar-title:hover{
@@ -27,29 +22,50 @@
                 color:orange;
             }
 
-            /* .tabs{
-                float: right;
-            } */
+
+            a{
+                color: white;                
+            }
+
+            a:hover{
+                text-decoration: none;
+                color:orange;
+            }
+
+            #about{
+                margin-left: 880px;
+                margin-top: 5px;
+            }
+            .navbar{
+                padding: 12px;
+                border-radius: 1px;
+            }
+
+            .jumbotron{
+                background-image: "assets/img/overwatch-background-first-image.jpg";
+                background-size: cover;
+            }
 
               
         </style>
-              
-        <nav class="navbar navbar-dark bg-faded">
-            <span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>
-            <a class="navbar-title" href="#">verWatch.GG</a>
-            <div class="navbar-right ">
-                <div class="About">
-                    <p>About</p>
-                </div>
-                <div class="Contact">
-                    <p>Contact</p>
-                </div>
-            </div>
-        </nav>
-                <div id="grid"></div>
-                <div id="details"></div>
-                
-   
     
+   <div class="container">
+        <nav class="navbar navbar-inverse bg-inverse">
+            
+            
+            <ul class="nav ">
+                <li><a class="navbar-title" href="#"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+                <li role="presentation" id="about"><a href="#">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="jumbotron">
+            
+        </div>  
+
+        
+            <div id="grid"></div>
+            <div id="details"></div> 
+   </div>
 </body>
 </html>
