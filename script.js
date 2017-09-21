@@ -14,13 +14,14 @@ $(document).ready(function(){
         
         for(var i = 0; i < characters.length; i++){
             var d = $("<button>");
+
             d.addClass("btn btn-outline-success my-2 my-sm-0")
             d.data("url", characters[i].url)
             d.data("data-toggle", "modal")
             d.data("data-target", "#exampleModal")
-            d.html(characters[i].name + ": " + characters[i].id)
+            d.html(characters[i].name)
             $("#grid").append(d);
-
+            
            //  var img = $("<img>");
            //  img.addClass("hero-thumbnail")
            //  img.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + characters[i].name + "/icon-portrait.png")
@@ -118,19 +119,19 @@ $(document).on("click", "button", function(){
 
         var heroAffiliation = $("<div>")
         heroAffiliation.addClass("hero-Affiliation")
-        heroAffiliation.html(result.affiliation);
+        heroAffiliation.html("Affiliation: "+result.affiliation);
 
         var heroDifficulty = $("<span>")
         heroDifficulty.addClass("hero-difficulty")
-        heroDifficulty.html(result.difficulty)
+        heroDifficulty.html("Difficulty: "+result.difficulty)
 
         var heroOperations = $("<div>")
         heroOperations.addClass("hero-operations")
-        heroOperations.html(result.base_of_operations);
+        heroOperations.html("Location: "+result.base_of_operations);
 
         var heroDescription = $("<p>")
         heroDescription.addClass("hero-description")
-        heroDescription.html(result.description)
+        heroDescription.html("Description: "+result.description)
 
 
 
@@ -139,31 +140,52 @@ $(document).on("click", "button", function(){
     var heroStats = $("<div>")
     heroStats.addClass("hero-stats")
     heroStats.html("Hero Stats")
-
+    $(heroStats).append("<br>")
         var heroHealth = $("<span>")
         heroHealth.addClass("hero-health")
-        heroHealth.html(result.health)
+        heroHealth.append(result.health)
+        $(heroStats).append("<br>")
+        $(heroStats).append("Health: ")
+        $(heroStats).append(heroHealth)
+        $(heroStats).append("<br>")
 
         var heroArmour = $("<span>")
         heroArmour.addClass("hero-armour")
-        heroArmour.html(result.armour)
+        heroArmour.append("Armor: ")
+        heroArmour.append(result.armour)
+        $(heroStats).append(heroArmour)
+        $(heroStats).append("<br>")
+        
+        
+
+        var abilities = $("<div>");
+        var abilitiesText = $("<p> Abilities </p>");
+        abilities.append(abilitiesText);
+        $(heroStats).append("<br>")
+        $(heroStats).append(abilities)
 
         for(i = 0; i < result.abilities.length; i ++){
             var heroAbilities = $("<div>")
             heroAbilities.addClass("hero-abilities")
-            heroAbilities.html("Abilities" + "<br>" + result.abilities[i].name + ": " + result.abilities[i].description)
-            $(heroStats).append(heroAbilities)
+            heroAbilities.css({"margin-bottom": 5+"px"});
+            heroAbilities.html( result.abilities[i].name + ": " + result.abilities[i].description)
+            $(abilities).append(heroAbilities)
         }
        
             var heroRole = $("<div>")
             heroRole.addClass("hero-role")
-            heroRole.html("Hero Role: " + "<br>" + result.role.name)
-            $(heroStats).append(heroRole)
+            heroRole.html("<br>"+"Hero Role: " + "<br>" + result.role.name)
+            $(heroOperations).append(heroRole)
+            $(heroOperations).append("<br>")
+
+            
 
             var heroLore = $("<a>")
             heroLore.addClass("hero-role")
             heroLore.html("Learn More about their Lore")
             heroLore.attr("href", "http://overwatch.wikia.com/wiki/" + result.name)
+            heroLore.css({"background": "black", "border-right": "3px solid white" });
+            heroLore.attr("target", "_blank")
             $(heroStats).append(heroLore)
 
            //  https://www.overbuff.com/heroes/genji
@@ -172,6 +194,8 @@ $(document).on("click", "button", function(){
            heroRate.addClass("hero-rate")
            heroRate.html("Learn More About Their Win Rates")
            heroRate.attr("href", "https://www.overbuff.com/heroes/" + result.name)
+           heroRate.css({"background": "black", "border-right": "3px solid white" });
+           heroRate.attr("target", "_blank")
            $(heroStats).append(heroRate)
 
 
@@ -180,6 +204,8 @@ $(document).on("click", "button", function(){
            heroMerch.addClass("hero-merch")
            heroMerch.html("Buy " + result.name + " " + "Merch")
            heroMerch.attr("href", "https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+" + result.name)
+           heroMerch.attr("target", "_blank")
+           heroMerch.css({"background": "black" });
            $(heroStats).append(heroMerch)
 
            lowerCaseHero = result.name.toLowerCase()
@@ -202,7 +228,9 @@ $(document).on("click", "button", function(){
            if(result.name == "D.Va"){
                heroImg.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + dva + "/icon-portrait.png")
            }
-           $(heroStats).append(heroImg)
+          
+           $("#details").prepend(heroImg);
+           
            
            var youtubeApiKey = "AIzaSyAgk2t-v33L1UZlEksXMD96frXKLKhNIUQ"
            var youtubeUrl = "https://cors-bcs.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q=overwatch+" + result.name + "+" + "gameplay" + "&key=" + youtubeApiKey
@@ -211,20 +239,33 @@ $(document).on("click", "button", function(){
                method: 'GET',
            }).done(function(response){
                console.log(response)
+
+                $("#videos").css({
+                    "display": "grid",
+                    "grid-template-columns": "1fr 1fr",
+                    "grid-template-rows": "auto",
+                    "grid-gap": "5px"
+
+                })
+
+
+
+
+
                for(i=0; i < response.items.length; i++){
                    console.log(response.items[i].id.videoId)
                    var video = $("<iframe>")
                    video.attr("class","video")
-                   video.attr("height", "420")
-                   video.attr("width", "600")
+                   video.attr("height", "255")
+                   video.attr("width", "450")
                    video.attr("src","https://www.youtube.com/embed/" + response.items[i].id.videoId)
                    video.attr("frameborder", "0")
-                   $("#details").append(video)
+                   $("#videos").append(video)
                    console.log(video)
                }
            })
     
-    $(heroStats).append(heroHealth, heroArmour)
+    
 
     $(details).append(heroName, heroInfo, heroStats)
 
