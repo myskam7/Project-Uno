@@ -2,6 +2,7 @@ const cors = "https://cors-bcs.herokuapp.com/";
 
 $(document).ready(function(){
 
+    // tne url for the overwatch api
     var queryURL = cors + 'https://overwatch-api.net/api/v1/hero';
 
     $.ajax({
@@ -10,102 +11,83 @@ $(document).ready(function(){
     }).done(function(result){
         
        var characters = result.data
-        //console.log(characters);
         
+       
+    //  the for loop that creates the buttons containing the hero's name
         for(var i = 0; i < characters.length; i++){
             var d = $("<button>");
-
+            d.addClass("characters")
             d.addClass("btn btn-outline-success my-2 my-sm-0")
             d.data("url", characters[i].url)
             d.data("data-toggle", "modal")
             d.data("data-target", "#exampleModal")
             d.html(characters[i].name)
             $("#grid").append(d);
-            
-           //  var img = $("<img>");
-           //  img.addClass("hero-thumbnail")
-           //  img.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + characters[i].name + "/icon-portrait.png")
-           //  //https://blzgdapipro-a.akamaihd.net/hero/genji/icon-portrait.png
-           //  $(d).append(img);
         }
-
-
     })
 
 })
 
-function displayInfo(){
-    
-    
-    
-    // var modal = $("<div>");
-    // modal.addClass("modal fade");
-    // modal.attr("id", "myModal");
-    // modal.attr("tabindex", "-1");
-    // modal.attr("role", "dialog");
-    // modal.attr("aria-labelledby","exampleModalLabel")
-    // modal.attr("aria-hidden", "true")
-
-    // var modalDialog = $("<div>")
-    // modalDialog.addClass("modal-dialog")
-    // modalDialog.attr("role", "document")
-
-    // var modalContent = $("<div>")
-    // modalContent.addClass("modal-content")
-
-    // $(modal).append(modalDialog, modalContent)
-    
-    // var modalHeader = $("<div>")
-    // modalHeader.addClass("modal-header")
-
-    // var modalTitle = $("<h3>")
-    // modalTitle.addClass("modal-title")
-    // modalTitle.html(selectedName)
-
-    // var closeModal = $("<button>")
-    // closeModal.addClass("close")
-    // closeModal.data("data-dismiss", "modal")
-    // closeModal.attr("aria-label", "Close")
-
-    // var closeSpan = $("<span>");
-    // closeSpan.attr("aria-hidden", "true")
-    // closeSpan.html("&times;")
-
-    // $(closeModal).append(closeSpan)
-
-    // $(modalHeader).append(modalTitle, closeModal)
-
-    // $(modalContent).append(modalHeader);
-
-    // var modalBody = $("<div>");
-    // modalBody.addClass('modal-body');
-    // modalBody.html(selectedAffiliation);
-
-    // var modalFooter = $("<div>");
-    // modalFooter.addClass("modal-footer");
-    // modalFooter.html(selectedName)
-
-    // $(modal).append(modalBody, modalFooter);
-
-
-
-}
-
 $(document).on("click", "button", function(){
 
+    // targets the url of the selected hero's url found in the hero's json object
     var click = $(this).data().url;
+
     $("#videos").empty();
     
+
+
+    //this refreshes the videos div containing the youtube videos
+    $("#videos").empty();
+
+
     $.ajax({
        url: click,
        method: 'GET',
    }).done(function(result){
+
       console.log(result)
       console.log(result.age)
      
+      var ctx = document.getElementById('myChart').getContext('2d');
+      ctx.font="20px Georgia";
+      ctx.fillText("Hello World!",10,50);
+      
+      $(".inner-content").text('HEALTH')
+     
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          
+          data: {
+              labels: [result.health],
+              datasets: [{
+                  label: "My First dataset",
+                  backgroundColor: ['rgb(218, 252, 100)','rgb(252, 250, 250)'],
+                  borderColor: 'white',
+                  data: [result.health, 600 - result.health],
+              
+                   
+              }]
+          },
+
+          // Configuration options go here
+          options: {
+              maintainAspectRatio: true,
+              responsive: true,
+              rotation: Math.PI *-0.01,
+              cutoutPercentage: 80,
+              animation:{
+                  animateScale: true,
+              },
+          }
+         
+      });
 
 
+
+    //this refreshes the details div containing the hero's details
     $("#details").empty();
+
     $("#detailGrid").empty();
     var details = $("<div>");
     details.addClass("hero-details")
@@ -113,6 +95,15 @@ $(document).on("click", "button", function(){
     console.log(details)
 
     var heroName = $("<div>")
+
+
+
+    var details = $("<div>");
+    details.addClass("hero-details")
+
+    // this starts the divs being used to display the hero's details
+    var heroName = $("<h3>")
+
     heroName.addClass("hero-name")
     var name = $("<h3> Name: "+result.name+"</h3>");
     heroName.append(name)
@@ -161,6 +152,7 @@ $(document).on("click", "button", function(){
 
     $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroParagraph, heroOperations, heroRole)
 
+
     var heroStats = $("<div>")
     heroStats.addClass("hero-stats divGen")
     heroStats.html("Hero Stats")
@@ -177,6 +169,35 @@ $(document).on("click", "button", function(){
         abilities.addClass("divGen")
         $(heroInfo).append(abilities)
 
+        var heroStats = $("<div>")
+        heroStats.addClass("hero-stats")
+        heroStats.html("Hero Stats")
+        $(heroStats).append("<br>")
+            var heroHealth = $("<span>")
+            heroHealth.addClass("hero-health")
+            heroHealth.append(result.health)
+            $(heroStats).append("<br>")
+            $(heroStats).append("Health: ")
+            $(heroStats).append(heroHealth)
+            $(heroStats).append("<br>")
+
+            var heroArmour = $("<span>")
+            heroArmour.addClass("hero-armour")
+            heroArmour.append("Armor: ")
+            heroArmour.append(result.armour)
+            $(heroStats).append(heroArmour)
+            $(heroStats).append("<br>")
+            
+            
+
+            var abilities = $("<div>");
+            var abilitiesText = $("<p> Abilities </p>");
+            abilities.append(abilitiesText);
+            $(heroStats).append("<br>")
+            $(heroStats).append(abilities)
+
+
+        // a for loop that displays every individual abilities of the selected Hero
         for(i = 0; i < result.abilities.length; i ++){
             var heroAbilities = $("<div>")
             heroAbilities.addClass("hero-abilities")
@@ -201,7 +222,7 @@ $(document).on("click", "button", function(){
             
             $(heroInfo).append(heroRole)
             
-
+            // this creates an "<a>" tag that contains a link the selected Hero's lore
             var heroLore = $("<a>")
             heroLore.addClass("hero-role")
             heroLore.addClass("btn btn-outline-success my-2 my-sm-0")
@@ -218,8 +239,7 @@ $(document).on("click", "button", function(){
         
             
 
-           //  https://www.overbuff.com/heroes/genji
-           //https://blzgdapipro-a.akamaihd.net/hero/genji/icon-portrait.png
+            // this creates an "<a>" tag that contains a link the selected Hero's stats
            var heroRate = $("<a>")
            heroRate.addClass("hero-rate")
            heroRate.addClass("btn btn-outline-success my-2 my-sm-0")
@@ -233,22 +253,29 @@ $(document).on("click", "button", function(){
            
 
 
-           //https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+genji
+          // this creates an "<a>" tag that contains a link redirecting to amazon with the search words of the selected Hero"
            var heroMerch = $("<a>")
            heroMerch.addClass("hero-merch")
            heroMerch.addClass("btn btn-outline-success my-2 my-sm-0")
            heroMerch.html("Buy " + result.name + " " + "Merch")
            heroMerch.attr("href", "https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+" + result.name)
            heroMerch.attr("target", "_blank")
+
            heroMerch.css({"background": "white" });
            
-            
+
+           heroMerch.css({"background": "black" });
+           $(heroStats).append(heroMerch)
+
+        // conditional statements for heros that have special characters in their name
+
            lowerCaseHero = result.name.toLowerCase()
            soldier = "soldier-76"
            lucio = "lucio"
            torbjorn = "torbjorn"
            dva = "dva"
 
+        // displays the hero's thumbnail image
            var heroImg = $("<img>")
            heroImg.attr("src", "https://blzgdapipro-a.akamaihd.net/hero/" + lowerCaseHero + "/icon-portrait.png")
            if(result.name == "Soldier: 76"){
@@ -273,15 +300,18 @@ $(document).on("click", "button", function(){
            links.append(heroRate)
            links.append(heroMerch)
            
+        // the youtube api key along with the youtube url used for the ajax call
            var youtubeApiKey = "AIzaSyAgk2t-v33L1UZlEksXMD96frXKLKhNIUQ"
            var youtubeUrl = "https://cors-bcs.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q=overwatch+" + result.name + "+" + "gameplay" + "&key=" + youtubeApiKey
+
            $.ajax({
                url: youtubeUrl,
                method: 'GET',
            }).done(function(response){
-               console.log(response)
 
-                
+
+                // the css for the videos div
+
                 $("#videos").css({
                     "display": "grid",
                     "grid-template-columns": "1fr 1fr",
@@ -291,10 +321,7 @@ $(document).on("click", "button", function(){
 
                 })
 
-
-
-
-
+            // the for loops that creates the iframe of the youtube videos of the selected hero
                for(i=0; i < response.items.length; i++){
                    console.log(response.items[i].id.videoId)
                    var video = $("<iframe>")
@@ -310,11 +337,14 @@ $(document).on("click", "button", function(){
     
     
 
+
     $(details).append(heroName, heroInfo, heroStats, links)
 
-       $("#details").append(details)
-       console.log('result', result);
+    
+    $(details).append(heroName, heroInfo, heroStats)
 
+
+    $("#details").append(details)
        
    })
    

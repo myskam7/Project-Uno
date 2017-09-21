@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,20 @@
     <title>Challenge Round</title>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-          crossorigin="anonymous">
-</head>
-<body>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+</head>
+
+<body>
+    
+
+<<<<<<< HEAD
         <style>
                 .paper{
                   border: 1px solid red;
@@ -278,8 +285,15 @@
        console.log(result)
        console.log(result.age)
       
+=======
+>>>>>>> master
 
+    <style rel="stylesheet" href="style.css>
+        .axis {
+            font: 10px sans-serif;
+        }
 
+<<<<<<< HEAD
      $("#details").empty();
  
      var details = $("<div>");
@@ -289,10 +303,26 @@
      var heroName = $("<h3>")
      heroName.addClass("hero-name")
      heroName.html(result.name)
+=======
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
 
-     var heroInfo = $("<div>")
-     heroInfo.addClass("hero-info")
+        .paper {
+            border: 1px solid red;
+        }
 
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+>>>>>>> master
+
+
+<<<<<<< HEAD
          var heroAffiliation = $("<div>")
          heroAffiliation.addClass("hero-Affiliation")
          heroAffiliation.html(result.affiliation);
@@ -309,14 +339,27 @@
          heroDescription.addClass("hero-description")
          heroDescription.html(result.description)
 
+=======
 
 
-     $(heroInfo).append(heroAffiliation, heroDifficulty, heroDescription, heroOperations)
 
-     var heroStats = $("<div>")
-     heroStats.addClass("hero-stats")
-     heroStats.html("Hero Stats")
+    <div class="container">
+        <div class="jumbotron">
+>>>>>>> master
 
+            <div class="chart"></div>
+
+            <h1> </h1>
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+
+            <nav class="navbar navbar-light bg-faded">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+
+<<<<<<< HEAD
          var heroHealth = $("<span>")
          heroHealth.addClass("hero-health")
          heroHealth.html(result.health)
@@ -402,9 +445,30 @@
             })
      
      $(heroStats).append(heroHealth, heroArmour)
+=======
+        </div>
+        <div class="paper1">
+            <div id="grid"></div>
+            <div id="details"></div>
+           
+            <div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">
+                    <canvas id="myChart"></canvas>
+                    <div class="inner-content"></div>
+    
 
-     $(details).append(heroName, heroInfo, heroStats)
+        </div>
+       
+    </div>
+>>>>>>> master
 
+    <script type="text/javascript" src="app.js">
+
+
+
+
+    </script>
+
+<<<<<<< HEAD
         $("#details").append(details)
         console.log('result', result);
 
@@ -419,5 +483,8 @@
 >>>>>>> 6ed5798e49fcc0adfd55a52f7a72a716b36f077e
  </script>
     
+=======
+>>>>>>> master
 </body>
+
 </html>

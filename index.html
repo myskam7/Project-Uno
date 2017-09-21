@@ -1,92 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Overwatch.gg</title>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script src="https://use.fontawesome.com/7666e0844e.js"></script>
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+   
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+
 </head>
+
 <body>
+    
 
         <style>
+
+
+
+            /* changes the document text with this font-family */
+            *{
+                font-family: 'Raleway', sans-serif;
+            }
+
+            /* targets the overwatch logo and "verwatch.gg text */
+
             .navbar-title {
                 color: white;
+                font-size: 25px;
             }
+
+
+
+            /* whenever the "overwatch.gg text is hover, this is tiggered */
+
             .navbar-title:hover{
                 text-decoration: none;
                 color:orange;
             }
+
+
+
+            /* changes the navbar itself */
+
             .navbar{
                 padding: 12px;
                 border-radius: 1px;
             }
+
             .picture{
+
+            
+            /* targets the tabs div containing the "Hero Selection" and "About" text */
+            .tabs{
+                text-decoration: none;
+                color:white;
+            }
+
+            /* the changes whenever the tabs text gets hovered on */
+            .tabs:hover{
+                text-decoration: none;
+                color:orange;
+            }
+
+            /* the id of the "Hero Selection" text */
+            #tab-selection{
+                margin-left: 610px;
+                font-size: 25px;
+            }
+
+            /* the id of the "About" text */
+            #tab-about{
+                margin-left: 20px;
+                font-size: 25px;
+            }
+
+
+            /* the jumbrotron picture */
+            .picture{
+                margin-top: 10px;
+
                 background-image: url("assets/img/overwatch-background-first-image.jpg");
                 background-size: cover;
                 border-radius: 0;
                 height: 525px;
             }
+
             .char-select{
               
             }
+
+
+            /* targets the div containing the "Search your favorite.." text */
+
             .headline{
                 background-color: white;
-                padding: 15px;
-                width: 400px;
-                float: right;
-                margin-top:230px;
+                padding: 30px;
                 border-radius: 4px;
-                opacity: 0.7;
+                background-color: #FAFAFA;
             }
+
             .headline-box{
                 text-align: center;
             }
             .about-section{
                 padding: 15px;
             }
+
+
+            /* targets the div that contains the "Hero Selection" text and button grid */
+            .char-select{
+              padding-top: 20px;
+            }
+
+            /* targets the "Hero-Selection" text in the char select div */
+            .hero-selection-title{
+                text-align: center;
+            }
+           
+            /* targets the buttons that show the hero's name */
+            .characters{
+                margin: 1px;
+            }
+
+            /* targets the "Hero Selection" text */
+            .headline-box{
+                text-align: center;
+            }
+
+            /* targets the div containg the about info */
+            .about-section{
+                padding: 15px;
+            }
+
+            /* targets the "About our Project" text */
             #about{
                 text-align: center;
                 padding: 20px;
             }
+
+
+            /* targets the icons used in the about section */
+
             .icon{
                 text-align: center;
                 padding-bottom: 20px; 
             }
+
             .question{
                 text-align: center;
             }
+
+
+            /* targets the div that contains the question text */
+            .question{
+                text-align: center;
+            }
+
+            /* targets the div that contains the descriptions used in the about section */
+
             .about-description{
                 text-align: center;
                 padding-top: 15px;
                 padding-bottom: 15px; 
             }
+
+
+            /* targets the footer div */
+
             .footer{
                 border: 2px solid black;
                 border-bottom: none;
                 padding: 10px;
-               
                 text-align: center;
             }
+
            .hero-details{
                 border: 1px solid #292B2C;
 
            }
+
+
+
+            .donut {
+            max-height: 300px;
+            max-width: 800px;
+            position: relative;
+                }
+            
+            
+               #myChart {
+            
+            /* left: 100%; */
+            
+            float: right;
+             }
+           
+
+
+
         </style>
     
    <div class="container">
-        <nav class="navbar navbar-inverse bg-inverse">
+        <nav class="navbar navbar-inverse bg-inverse" id="home">
             <ul class="nav">
-                <li><a class="navbar-title" href="#"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+                <li><a class="navbar-title" href="#home"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+                <li><a class="tabs" href="#selection" id="tab-selection">Hero Selection</a></li>
+                <li><a class="tabs" href="#about" id="tab-about">About</a></li>
             </ul>
         </nav>
+
 
         <div class="jumbotron picture">
             <div class="container">
@@ -98,19 +241,52 @@
             </div>
         </div>  
 
+        <div class="jumbotron picture" ></div>  
+
+        <div class="headline">
+             <h3 class="headline-box">Search your favorite Overwatch hero!</h3>
+             <h4 class="headline-box">Learn more about their lore, stats and get access</h4>
+             <h4 class="headline-box">to gameplay footage and more!</h4>
+        </div>
+
+
+
+
+
         <div class="char-select">
+
+        
+        <div class="char-select" id="selection">
+            <h3 class="hero-selection-title">Hero Selection</h3>
+
             <div id="grid"></div>
+
             <div id="detailGrid"></div>
             <div id="details">
                 
             </div>
             <div id="videos"></div>
+
+            <div id="details"> 
+
+                    
+            </div>
+
+            <div  style=" top:60px; left:10px; width:500px; height:500px;">
+                    <canvas id="myChart"></canvas>
+                    <div class="inner-content"></div>
+
             
+                    </div>
+            </div>
+            <div id="videos"></div>
         </div>
+       
  
 
         <div class="about-section">
           <div class="container">
+              
               <h2 id="about">About Our Project</h2>
               <div class="row">
                     <div class="col icon">
@@ -128,7 +304,7 @@
                         <h3 class="question">Wanna know more about your hero?</h3>
                     </div>
                     <div class="col">
-                        <h3 class="question">Wanna see how the pro play your hero?</h3>
+                        <h3 class="question">Wanna see how the pros play your hero?</h3>
                     </div>
                     <div class="col">
                         <h3 class="question">Do you consider yourself a Genji Main?</h3>
@@ -159,8 +335,11 @@
                 <a href="https://github.com/myskam7/Project-Uno" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
            </span>
            <br>
-          
         </div>
+
    </div>
+
+
 </body>
+
 </html>
