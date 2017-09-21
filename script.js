@@ -170,7 +170,6 @@ $(document).on("click", "button", function(){
 
 
         
-        
 
         var abilities = $("<div>");
         var abilitiesText = $("<p> Abilities </p>");
@@ -199,38 +198,51 @@ $(document).on("click", "button", function(){
             heroRole.html("Hero Role: " + result.role.name)
             $(heroOperations).append(heroRole)
             $(heroOperations).append("<br>")
-
+            
             $(heroInfo).append(heroRole)
             
 
             var heroLore = $("<a>")
             heroLore.addClass("hero-role")
+            heroLore.addClass("btn btn-outline-success my-2 my-sm-0")
             heroLore.html("Learn More about their Lore")
             heroLore.attr("href", "http://overwatch.wikia.com/wiki/" + result.name)
-            heroLore.css({"background": "black", "border-right": "3px solid white" });
+            heroLore.css({"background": "white ", 
+            "border-right": "3px solid white",
+            "margin-right": "15px",
+            
+            });
             heroLore.attr("target", "_blank")
-            $(heroStats).append(heroLore)
+            $(links).append("<br>")
+            
+        
+            
 
            //  https://www.overbuff.com/heroes/genji
            //https://blzgdapipro-a.akamaihd.net/hero/genji/icon-portrait.png
            var heroRate = $("<a>")
            heroRate.addClass("hero-rate")
+           heroRate.addClass("btn btn-outline-success my-2 my-sm-0")
            heroRate.html("Learn More About Their Win Rates")
            heroRate.attr("href", "https://www.overbuff.com/heroes/" + result.name)
-           heroRate.css({"background": "black", "border-right": "3px solid white" });
+           heroRate.css({"background": "white", 
+           "border-right": "3px solid white",
+           "margin-right": "15px"
+            });
            heroRate.attr("target", "_blank")
-           $(heroStats).append(heroRate)
+           
 
 
            //https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+genji
            var heroMerch = $("<a>")
            heroMerch.addClass("hero-merch")
+           heroMerch.addClass("btn btn-outline-success my-2 my-sm-0")
            heroMerch.html("Buy " + result.name + " " + "Merch")
            heroMerch.attr("href", "https://www.amazon.com/s/ref=nb_sb_noss_1/142-0300230-6136724?url=search-alias%3Daps&field-keywords=overwatch+" + result.name)
            heroMerch.attr("target", "_blank")
-           heroMerch.css({"background": "black" });
-           $(heroStats).append(heroMerch)
-
+           heroMerch.css({"background": "white" });
+           
+            
            lowerCaseHero = result.name.toLowerCase()
            soldier = "soldier-76"
            lucio = "lucio"
@@ -253,7 +265,13 @@ $(document).on("click", "button", function(){
            }
          
            $("#detailGrid").append(heroImg);
-           
+           var links = $("<div>")
+           links.addClass("links divGen")
+           links.html("Links: ")
+           links.append("<br>")
+           links.append(heroLore)
+           links.append(heroRate)
+           links.append(heroMerch)
            
            var youtubeApiKey = "AIzaSyAgk2t-v33L1UZlEksXMD96frXKLKhNIUQ"
            var youtubeUrl = "https://cors-bcs.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q=overwatch+" + result.name + "+" + "gameplay" + "&key=" + youtubeApiKey
@@ -292,7 +310,7 @@ $(document).on("click", "button", function(){
     
     
 
-    $(details).append(heroName, heroInfo, heroStats)
+    $(details).append(heroName, heroInfo, heroStats, links)
 
        $("#details").append(details)
        console.log('result', result);
