@@ -4,182 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Challenge Round</title>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-          crossorigin="anonymous">
+    <title>Document</title>
+    <link href="//cdn.muicss.com/mui-0.5.1/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.1/es6-promise.min.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="//cdn.muicss.com/mui-0.5.1/js/mui.min.js"></script>
+    <script src="//goinggas.com/cdn/dashtimer/dashtimer.js"></script>
+    
 </head>
 <body>
-
-        <style>
-                .paper{
-                  border: 1px solid red;
-                }
-                
-                 a:hover{
-                    text-decoration: none;
-                 }
-                </style>
-             </head>
-             
-             <body>
-                <div class="container" id="gridID">
-                   <div class="jumbotron">
-                       
-                           <div class="chart"></div>
-                       
-                      <h1> </h1>
-                      <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-             
-                      <nav class="navbar navbar-light bg-faded">
-                             <form class="form-inline">
-                               <input class="form-control mr-sm-2" id="input" type="text" placeholder="Search">
-                               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                             </form>
-                           </nav>
-             
-                   </div>
-                   <div class="paper1">
-             
-                   </div>
+        
+        
+              <div class="mui-panel mui--text-center">
+                <div class="mui--text-caption">
+                  timer
                 </div>
-                
-    <script>
-         var ch = {
-                "Ana": "/1",
-                "Bastion":"/2",
-                "D.Va":"/3",
-                "Genji":"/4",
-                "Hanzo":"/5",
-                "Junkrat":"/6",
-                "Lúcio":"/7",
-                "McCree":"/8",
-                "Mei":"/9",
-                "Mercy":"/10",
-                "Pharah":"/11",
-                "Reaper":"/12",
-                "Reinhardt":"/13",
-                "Roadhog":"/14",
-                "Soldier: 76":"/15",
-                "Symmetra":"/16",
-                "Torbjö statusrn":"/17",
-                "Tracer":"/18",
-                "Widowmaker":"/19",
-                "Winston":"/20",
-                "Zarya":"/21",
-                "Zenyatta":"/22",
-                "Sombra":"/23",
-                "Orisa":"/24",
-               
-            };
-            
-            // console.log(Object.entries(ch));
-
-            // d3.select(".chart")
-            // .selectAll("div")
-            // .data(ch)
-            // .enter()
-            // .append("div")
-            // .style("width", function(d){
-            //     return d
-            // }).text(function(d){ 
-            //     console.log(d)
-            // });
-                
-         const cors = "https://cors-bcs.herokuapp.com/";
-         var apiID = "RGAPI-818a2ace-9c3a-4b25-acf9-920dbc693326";
-         var queryURL = cors + 'https://overwatch-api.net/api/v1/hero' ;
-        //  var grid = $("<div>")
-        //  $("#grid").on("click", function(){
-            
-        //  })
-        //    $("#gridID").append(grid)
-            $.ajax({
-                url: queryURL,
-                method: 'GET',
-            }).done(function(result){
-                var characters = result;
-                console.log(characters)
-                for (var i = 0; i < characters.data.length; i++) {              
-                 var d = $("<button>");
-                 d.addClass("btn btn-outline-success my-2 my-sm-0")
-                 d.html(characters.data[i].name);
-                 $("#gridID").append(d);
-
-                 
-
-             }
-             $("button").on("click", function(event){
-                
-                Object.entries(ch).forEach(([key, value]) => {
-                    
-                    console.log(key, value);
-                    
-                });
-                    });
-                // var a = $("button").val(function( index, value ) {
-                //     console.log ();
-         });
-
-            
-
-            
-
-
-
-
-       
-           
+                <div id="timer1">
+                </div>
+              </div>
+        <div id="timer"></div>
         
-
-        // $(".btn-outline-success").on("click", function(event){
-        //     event.preventDefault();
-         
-
-           
-        //     console.log(ch)
-        // }); 
-            // $.ajax({
-            //     url: queryURL,
-            //     method: 'GET',
-            // }).done(function(result){
-            //         console.log(result)
-            // });
-            
-            // makes a second request with the id of the name  
-                // complete: function(data){
-                //     // var nameId = $("data.id.val()
-                //     var queryURL2 = cors + 'https://na1.api.riotgames.com/lol/platform/v3/masteries/by-summoner/' + dt + '?api_key=' + apiID;
-                //     $.ajax({                       
-                //         url: queryURL2,
-                //         method: 'GET',
-                //         success: function(response){
-                //             console.log(response)
-                //         }
-                //       },               
-                //     )}
-     
-      
-                // data: data,
-                // success: function(result){
-                    // var a = data;
-                    // console.log (result)
-                   
-                    // var a = key.data
-                    //  $(a).each(function(e){
-                    //     console.log(a)
-                    // })
-                    // for (var i = 0; i < data.length; i++) {
-                    //     console.log(data[i])
-                    // }
-            
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="resume">Resume</button>
+        <button id="cancel">Cancel</button>
+        <button id="setprogress">Set</button>
+        <input type="number" min="0" max="1" value="0.75" id="setprogressvalue">
         
         
-    </script>
-    
+        <legend>DashTimer testing</legend>
+        <div class="mui-textfield">
+          <input type="text" placeholder="Options" id="inputoptions">
+        </div>
+        <div class="mui-textfield">
+          <input type="text" placeholder="Data" id="inputdata">
+        </div>
+        
+        
+        <table class="mui-table">
+          <tr>
+            <td>Resolved</td>
+            <td id="resolved"></td>
+          </tr>
+          <tr>
+            <td>progress</td>
+            <td id="progress"></td>
+          </tr>
+          <tr>
+            <tr>
+              <td>running</td>
+              <td id="running"></td>
+            </tr>
+            <td>paused</td>
+            <td id="paused"></td>
+          </tr>
+          <tr>
+            <td>finished</td>
+            <td id="finished"></td>
+          </tr>
+          <tr>
+            <td>cancelled</td>
+            <td id="cancelled"></td>
+          </tr>
+          <tr>
+            <td>data</td>
+            <td id="data"></td>
+          </tr>
+          <tr>
+            <td>control</td>
+            <td id="control"></td>
+          </tr>
+          <tr>
+            <td>vizinfo</td>
+            <td id="vizinfo"></td>
+          </tr>
+        </table>
+        <script>
+            var options = {};
+
+var data = [{
+  dataName: "shadow",
+  update: function(d, dash) {
+
+  },
+  start: {
+    angle: 1,
+    fill: '#eee'
+  },
+  finish: {
+    angle: 0,
+    fill: '#eee',
+    innerRatio: .5
+  },
+  immediate: {
+    angle: true,
+  }
+}, {
+  dataName: "main",
+  values: {
+    show: true
+  },
+  start: {
+    value: 500
+  },
+  finish: {
+    value: 10,
+    innerRatio: .5
+  },
+  callback: function(d, a, t) {
+    console.log('timer:' + a.getControl().name + ' series:' + d.dataName + ' step:' + t + ' progress:' + a.getProgress());
+  }
+}];
+
+// show default test values
+d3.select('#inputoptions').attr("value", JSON.stringify(options));
+d3.select('#inputdata').attr("value", JSON.stringify(data));
+
+// this is how to initializd and set data
+var an = new DashTimer('#timer1')
+  .init(options)
+  .setData(data);
+
+d3.select('#start').on('click', function(d) {
+  an.start().then(function(anarcs) {
+    report(true, anarcs);
+  }, function(anarcs) {
+    report(false, anarcs);
+  });
+});
+d3.select('#pause').on('click', function(d) {
+  an.pause();
+});
+d3.select('#cancel').on('click', function(d) {
+  an.cancel();
+});
+d3.select('#resume').on('click', function(d) {
+  an.resume();
+});
+
+d3.select('#inputoptions').on('change', function(d) {
+  options = JSON.parse(this.value);
+  an.init(options);
+});
+d3.select('#inputdata').on('change', function(d) {
+  data = JSON.parse(this.value);
+  an.setData(data);
+});
+d3.select('#setprogress').on('click', function(d) {
+  an.setProgress(parseFloat(d3.select('#setprogressvalue').node().value));
+});
+
+function report(resolved, an) {
+  d3.select('#resolved').text(resolved);
+  d3.select('#progress').text(an.getProgress());
+
+  d3.select('#finished').text(an.isFinished());
+  d3.select('#paused').text(an.isPaused());
+  d3.select('#cancelled').text(an.isCancelled());
+  d3.select('#running').text(an.isRunning());
+  d3.select('#data').text(JSON.stringify(an.getData()));
+  d3.select('#control').text(JSON.stringify(an.getControl()));
+  d3.select('#vizinfo').text(JSON.stringify(an.getVizInfo()));
+}
+
+var dt = new DashTimer('#timer').init({
+  start:{
+    fill:'green',
+    innerRatio:.7,
+    outerRatio:1
+  },
+  finish: {
+    fill:'red',
+    innerRatio:.7,
+    outerRatio:1
+  }
+}).setData([{
+  immediate: {
+    angle: true
+  },
+  start: {
+    angle: 1,
+    fill: '#eee'
+  },
+  finish: {
+    angle: 0,
+    fill: '#eee'
+  }
+}, {
+  values: {
+    show: true
+  },
+  start: {
+    value:5000,
+  },
+  finish: {
+    value:1,
+  }
+}]).start(20000);
+
+
+        </script>
 </body>
 </html>
