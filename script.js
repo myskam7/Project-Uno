@@ -12,6 +12,7 @@ $(document).ready(function(){
         
        var characters = result.data
         
+       
     //  the for loop that creates the buttons containing the hero's name
         for(var i = 0; i < characters.length; i++){
             var d = $("<button>");
