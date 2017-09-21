@@ -12,17 +12,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script src="https://use.fontawesome.com/7666e0844e.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body>
 
         <style>
-            *{
-               box-sizing: border-box;
 
+            *{
+                font-family: 'Raleway', sans-serif;
             }
 
             .navbar-title {
                 color: white;
+                font-size: 25px;
             }
 
             .navbar-title:hover{
@@ -35,26 +37,20 @@
                 border-radius: 1px;
             }
 
-            .jumbotron{
-                /* background-image: url("assets/img/overwatch-background-first-image.jpg");
-                background-size: cover;
-                border-radius: 0;
-                height: 525px; */
-            }
-
-            #picture{
+            .picture{
+                margin-top: 10px;
                 background-image: url("assets/img/overwatch-background-first-image.jpg");
                 background-size: cover;
                 border-radius: 0;
                 height: 525px;
             }
 
+
             .headline{
                 background-color: white;
                 padding: 30px;
                 border-radius: 4px;
-                opacity: 0.7;
-                background-color: lightgrey;
+                background-color: #FAFAFA;
             }
 
             .char-select{
@@ -95,6 +91,8 @@
                 padding: 10px;
                 text-align: center;
             }
+
+
            
 
         </style>
@@ -102,24 +100,25 @@
    <div class="container">
         <nav class="navbar navbar-inverse bg-inverse">
             <ul class="nav">
-                <li><a class="navbar-title" href="#"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+                <li><a class="navbar-title" href="#home"><span><img src="assets/img/overwatch-logo.png" width="40" height="40"></span>verWatch.GG</a></li>
+                <li><a href="#selection">Hero Selection</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
         </nav>
 
-        <div class="jumbotron">
-            <div id="picture">
-            </div>
+        <div class="jumbotron picture" id="home">
         </div>  
 
         <div class="headline">
-                <h3 class="headline-box">Search your favorite Overwatch hero</h3>
+                <h3 class="headline-box">Search your favorite Overwatch hero!</h3>
                 <h4 class="headline-box">Learn more about their lore, stats and get access</h4>
                 <h4 class="headline-box">to gameplay footage and more!</h4>
-            </div>
+        </div>
 
         
 
-        <div class="char-select">
+        <div class="char-select" id="selection">
+            <h3>Hero Selection</h3>
             <div id="grid"></div>
             <div id="details"></div>
             <div id="videos"></div>
